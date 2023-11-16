@@ -7,17 +7,24 @@ const gameContainer = document.querySelector('.container'),
 optionImages.forEach((image, index) => {
     image.addEventListener('click', (e) => {
         image.classList.add('active');
+        userResult.src = cpuResult.src = "/images/rock.svg";
+        result.innerHTML = 'Waiting...';
         optionImages.forEach((image2, index2) => {
             index !== index2 && image2.classList.remove('active');
         });
 
-        let imageSrc = e.target.closest("div").querySelector("img").src;
-        userResult.src = imageSrc;
-        let random = Math.floor(Math.random() * optionImages.length);
-        cpuResult.src = optionImages[random].querySelector("img").src;
-        let userChoice = e.target.closest("div").getAttribute("data-choice");
-        let cpuChoice = optionImages[random].getAttribute("data-choice");
-        result.textContent = determineWinner(userChoice, cpuChoice);
+        gameContainer.classList.add('start');
+        let time = setTimeout(() => {
+            gameContainer.classList.remove('start');
+            clearTimeout(time);
+            let imageSrc = e.target.closest("div").querySelector("img").src;
+            userResult.src = imageSrc;
+            let random = Math.floor(Math.random() * 3);
+            cpuResult.src = optionImages[random].querySelector("img").src;
+            let userChoice = e.target.closest("div").getAttribute("data-choice");
+            let cpuChoice = optionImages[random].getAttribute("data-choice");
+            result.textContent = determineWinner(userChoice, cpuChoice);
+        }, 1500);
     });
 });
 

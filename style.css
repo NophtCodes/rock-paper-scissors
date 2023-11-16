@@ -29,6 +29,22 @@ body {
   width: 200px;
   height: 200px;
 }
+.container.start .user_result {
+  animation: userShake 0.5s ease infinite;
+}
+.container.start .cpu_result {
+  animation: cpuShake 0.5s ease infinite;
+}
+@keyframes userShake {
+  50% {
+    transform: rotate(10deg);
+  }
+}
+@keyframes cpuShake {
+  50% {
+    transform: rotate(-10deg);
+  }
+}
 .user_result img {
   transform: rotate(90deg);
 }
@@ -36,7 +52,6 @@ body {
 .cpu_result img {
   transform: rotate(-90deg) rotateY(180deg);
 }
-
 
 .result {
   text-align: center;
